@@ -1,6 +1,7 @@
+<app-user-nav></app-user-nav>
 <div class="container">
     <form [formGroup]="formValue">
-        <div class="form-group">
+        <div  class="form-group">
           <label >To </label>
             <input class="form-control" id="To"  placeholder="To" formControlName="ArrivalStation">
         </div>
@@ -13,7 +14,7 @@
             <input type="date" class="form-control" id="Date"  placeholder="Date" formControlName="Date">
 
         </div>
-        <button (click)="SearchTrain()" >Search</button>
+        <button class="btn btn-primary" (click)="SearchTrain()" >Search</button>
       </form>
 </div>
 
@@ -32,10 +33,11 @@
             <th>FirstAC</th>
             <th>SecondAC</th>
             <th>Sleeper</th>
+            <th>Action</th>
         </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let row of trainData" >
+    <tbody >
+        <tr class="tbody" *ngFor="let row of trainData" >
             <td>{{row.TrainId}}</td>
             <td>{{row.Name}}</td>
             <td>{{row.ArrivalTime}}</td>
@@ -48,7 +50,7 @@
             <td>{{row.SecondAC}}</td>
             <td>{{row.Sleeper}}</td>
             <td>
-                <button>Book Now</button>
+                <button class="btn btn-primary" (click)="GetTrainById(row.TrainId)">Book Now</button>
             </td>
         </tr>
        

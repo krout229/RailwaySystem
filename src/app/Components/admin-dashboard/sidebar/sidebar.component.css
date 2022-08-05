@@ -12,6 +12,7 @@
 .sidebar-nav .offcanvas {
     width: 220px;
     border: none;
+   
 }
 .sidebar-nav .offcanvas ul li a  {
     font-size: 18px;
@@ -24,10 +25,7 @@
     border: none;
 }
 
-.bi::before, [class^="bi-"]::before, [class*=" bi-"]::before
-{
-    margin-right: 20rem;
-}
+
 .navbar{
     background-color: aliceblue;
 }

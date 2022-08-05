@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Seats } from 'src/app/Models/seat.model';
 import { Train } from 'src/app/Models/train.model';
 import { SharedService } from 'src/app/shared.service';
@@ -17,11 +18,11 @@ trainModelObj:Train=new Train()
 trainData!:any;
 seats !: Seats[];
 seatData!:any;
-  constructor(private fb:FormBuilder,private shared:SharedService,private nav:NavbarService,private fs:FooterService) { }
+  constructor(private fb:FormBuilder,private shared:SharedService,private nav:NavbarService,private fs:FooterService,private router:Router) { }
 
   ngOnInit(): void {
    
-    this.nav.show();
+    this.nav.hide();
     this.nav.doSomethingElseUseful();
     this.fs.show();
     this.fs.doSomethingElseUseful();
@@ -41,6 +42,9 @@ this.shared.SearchTrain(this.formValue.value.ArrivalStation,this.formValue.value
   console.log(res);
     this.trainData = res;
     this.seatData=res;
+    if(res==null || Object.keys(res).length===0){
+      alert("No Train Found");
+    }
     this.formValue.reset();
    
  
@@ -49,5 +53,13 @@ this.shared.SearchTrain(this.formValue.value.ArrivalStation,this.formValue.value
 });
 }
 
+GetTrainById(id:number){
+this.trainModelObj.trainId=id;
+this.shared.getTrainbyId(id).subscribe((res)=>{
+  console.log(res);
+  localStorage.setItem('trainId',JSON.stringify(res));
+  this.router.navigateByUrl('/add-passenger');
+})
+}
 
 }

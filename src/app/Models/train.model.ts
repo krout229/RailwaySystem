@@ -9,6 +9,7 @@ export class Train{
     departureDate="";
     arrivalStation="";
     departureStation="";
+    distance="";
     isActive=true;
     FirstAC:number=0;
     SecondAC:number=0;

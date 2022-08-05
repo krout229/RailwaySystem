@@ -22,6 +22,19 @@ import { TrainsComponent } from './Components/trains/trains.component';
 import { SaveTrainsComponent } from './Components/admin-dashboard/save-trains/save-trains.component';
 import { SidebarComponent } from './Components/admin-dashboard/sidebar/sidebar.component';
 import { SaveSeatsComponent } from './Components/admin-dashboard/save-seats/save-seats.component';
+import { LoginComponent } from './Components/login/login.component';
+import { AuthGuard } from './Auth/auth.guard';
+import { AddPassengerComponent } from './Components/add-passenger/add-passenger.component';
+import { MatRadioModule} from '@angular/material/radio';
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import{MatSelectModule}from'@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import{MatInputModule}from '@angular/material/input';
+import { BookingComponent } from './Components/user-dashboard/booking/booking.component';
+import { TransactionComponent } from './Components/user-dashboard/transaction/transaction.component';
+import { UserNavComponent } from './Components/user-dashboard/user-nav/user-nav.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,20 +52,31 @@ import { SaveSeatsComponent } from './Components/admin-dashboard/save-seats/save
     SaveTrainsComponent,
     SidebarComponent,
     SaveSeatsComponent,
+    LoginComponent,
+    AddPassengerComponent,
+    BookingComponent,
+    TransactionComponent,
+    UserNavComponent,
+   
    
   ],
   imports: [
     BrowserModule,
-    [ FormsModule, ReactiveFormsModule ],
+    [ FormsModule, ReactiveFormsModule],
     RouterModule.forRoot ([
       {path:'home', component:HomeComponent},
-      {path:'admin-dashboard', component:AdminDashboardComponent},
+      // {path:'admin-dashboard', component:AdminDashboardComponent},
       {path:'sign-up', component:SignupComponent},
       {path:'trains', component:TrainsComponent},
-      {path:'save-train', component:SaveTrainsComponent},
-      
-      {path: '', redirectTo: 'home', pathMatch: 'full'}
-
+      {path:'login/admin/dashboard/save-train', component:SaveTrainsComponent},
+      {path:'login/admin/dashboard/save-seats', component:SaveSeatsComponent},
+      {path:'add-passenger', component:AddPassengerComponent},
+      {path:'booking',component:BookingComponent},
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
+      {path:'signup', component:SignupComponent},
+      {path:'login', component:LoginComponent},
+      {path:'login/admin/dashboard', component:AdminDashboardComponent, canActivate:[AuthGuard]},
+      {path:'login/user/dashboard', component:UserDashboardComponent, canActivate:[AuthGuard]}
      ]),
      
      HttpClientModule,
@@ -60,9 +84,15 @@ import { SaveSeatsComponent } from './Components/admin-dashboard/save-seats/save
     BrowserAnimationsModule,
     MatIconModule,
     MatDatepickerModule,
-    
+    MatRadioModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    BrowserModule,
+    NgbModule,
+    MatInputModule
   ],
-  providers: [SharedServicesService],
+  providers: [SharedServicesService ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

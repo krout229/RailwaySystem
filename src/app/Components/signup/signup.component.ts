@@ -47,9 +47,12 @@ export class SignupComponent implements OnInit {
   }
 
  this.shared.SaveUser(this.SignUpform.value).subscribe((res)=>{
+ 
    console.log(res);
  });
-
+ this.shared.EmailService(this.SignUpform.value.name,this.SignUpform.value.email).subscribe((res)=>{
+  console.log(res);
+ });
 alert("Sign Up Successful");
   this.SignUpform.reset();
   this.router.navigate(['login']);
