@@ -40,7 +40,8 @@
       <div class="modal-content">
         <div class="modal-header">
            
-          <h5  class="modal-title" id="exampleModalLongTitle">Update Seat</h5>
+          <h5  *ngIf="showUpdate" class="modal-title" id="exampleModalLongTitle">Update Seat</h5>
+          <h5 *ngIf="showAdd" class="modal-title" id="exampleModalLongTitle">Add Seat</h5>
           <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

@@ -76,6 +76,11 @@ postSeatDetails(){
   this.SeatModelObj.Total=this.formValue.value.Total
   this.shared.saveSeat(this.SeatModelObj).subscribe((res)=>{
     console.log(res);
+    alert("Added successfully");
+    let ref = document.getElementById("cancel")
+    ref?.click();
+      this.formValue.reset();
+      this.getAllSeats();
   });
 }
 
