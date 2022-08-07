@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { booking } from 'src/app/Models/booking.model';
 import { SharedService } from 'src/app/shared.service';
+import { NavbarService } from 'src/app/SharedService/navbar.service';
 
 @Component({
   selector: 'app-booking',
@@ -13,9 +15,10 @@ export class BookingComponent implements OnInit {
   trainData:any;
   pData:any;
   fare!:any;
-  constructor(private shared:SharedService) { }
+  constructor(private shared:SharedService, private router:Router,private nav:NavbarService) { }
 
   ngOnInit(): void {
+    this.nav.hide();
     this.loadData();
   }
 
@@ -25,13 +28,14 @@ export class BookingComponent implements OnInit {
     var sharePass:any=localStorage.getItem('passengers');
     this.pData=JSON.parse(sharePass);
     
-    this.shared.fareCal(this.trainData.TrainId,this.pData.Class,this.pData.PassengerId).subscribe((res)=>{
-          this.fare=res;     
+    this.shared.fareCal(this.trainData.TrainId,this.pData.Class,this.pData.PassengerId,this.pData.UserId).subscribe((res)=>{
+          this.fare=res;  
+          console.log(res);
+          localStorage.setItem('fare',JSON.stringify(res));   
     });
   }
 payNow(){
-  localStorage.removeItem('passengers');
-  localStorage.removeItem('trainId');
+  this.router.navigateByUrl('login/user/dashboard/transaction');
 }
 }
 

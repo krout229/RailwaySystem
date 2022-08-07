@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/shared.service';
 
 @Component({
   selector: 'app-user-nav',
@@ -7,14 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-nav.component.css']
 })
 export class UserNavComponent implements OnInit {
-
-  constructor(private router:Router) { }
+  userDetails!:any;
+  constructor(private router:Router,private shared:SharedService) { }
 
   ngOnInit(): void {
+    this.shared.getUserProfile().subscribe(
+      res=>{
+       this.userDetails=res;
+       console.log(this.userDetails);
+      },
+      err =>{
+       console.log(err);
+      },
+    );
   }
 
+
   onLogout() {
-    localStorage.removeItem('token');
+    localStorage.clear();
     this.router.navigate(['/home']);
   }
+
 }

@@ -1,5 +1,3 @@
-import { Seats } from "./seat.model";
-
 export class Train{
     trainId:number=0;
     name="";
@@ -15,5 +13,6 @@ export class Train{
     SecondAC:number=0;
     Sleeper:number= 0;
     Total:number= 0;
+    seats:null;
 }
 

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { User } from './Components/signup/signup.model';
@@ -19,9 +19,13 @@ export class SharedService {
 
   SaveUser(val:any){
     console.log(val);
-    return this.http.post<User>(this.APIUrl+'/User/SaveUser',val)
+    return this.http.post<any>(this.APIUrl+'/User/SaveUser',val)
   }
-
+  getUserProfile(){
+    var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')})
+    console.log(tokenHeader);
+    return this.http.get(this.APIUrl+'/User/GetUserProfile', {headers : tokenHeader});
+  }
   //Trains
   getAllTrains():Observable<Train>{
     return this.http.get<Train>(this.APIUrl+'/Train/GetAllTrains');
@@ -53,6 +57,9 @@ export class SharedService {
     return this.http.put<any>(this.APIUrl+'/Seat/UpdateSeat?SeatId='+id,data);
 
   }
+  saveSeat(val:any){
+    return this.http.post<Seats>(this.APIUrl+'/Seat/SaveSeat',val);
+  }
  
   Login(formData: any){
     console.log(formData);
@@ -79,11 +86,31 @@ export class SharedService {
   addPassenger(val:any){
     return this.http.post<passenger>(this.APIUrl+'/Passenger/AddPassenger',val);
   }
-
+  report(tid:number){
+    return this.http.get<any>(this.APIUrl+'/Passenger/GetReport?TrainId='+tid);
+  }
 
   //fare
-  fareCal(tid:number,val:any,pid:number){
-    return this.http.get<any>(this.APIUrl+'/Booking/CalculateFare?TrainId='+tid+'&Class='+val+'&PassengerId='+pid);
+  fareCal(tid:number,val:any,pid:number,uid:number){
+    return this.http.get<any>(this.APIUrl+'/Booking/CalculateFare?TrainId='+tid+'&Class='+val+'&PassengerId='+pid+'&UserId='+uid);
+  }
+
+  //booking
+  bookingHistory(uid:number){
+      return this.http.get<any>(this.APIUrl+'/Booking/GetBookingHistory?UserId='+uid);
+  }
+  DelbookingHistory(bid:number){
+    return this.http.delete<any>(this.APIUrl+'/Booking/DeleteBooking?BookingId='+bid);
+  }
+  getBookingbyId(bid:number){
+    return this.http.get<any>(this.APIUrl+'/Booking/GetBooking?BookingId='+bid);
+  }
+  //Transaction
+  GetBookingId(pid:number){
+    return this.http.get<any>(this.APIUrl+'/Booking/GetBookingId?PassengerId='+pid);
+  }
+  confirmBooking(bid:any){
+    return this.http.get<any>(this.APIUrl+'/Booking/ConfirmBooking?BookingId='+bid);
   }
 }
 

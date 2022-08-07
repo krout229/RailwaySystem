@@ -6,6 +6,7 @@ export class booking{
     status:string="";
     seatNum:number=0;
     passengerId:number=0;
-    bookingStatus:string="";
+    
     fare:number=0;
+    userId:number=0;
 }

@@ -58,7 +58,7 @@ this.trainModelObj.trainId=id;
 this.shared.getTrainbyId(id).subscribe((res)=>{
   console.log(res);
   localStorage.setItem('trainId',JSON.stringify(res));
-  this.router.navigateByUrl('/add-passenger');
+  this.router.navigateByUrl('/login/user/dashboard/add-passenger');
 })
 }
 

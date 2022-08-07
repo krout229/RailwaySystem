@@ -16,10 +16,10 @@ export class HomeComponent implements OnInit {
   formValue !: FormGroup;
   trainModelObj: Train = new Train();
   trainData!:any;
-  constructor(private shared:SharedService,private fb:FormBuilder,private router:Router) { }
+  constructor(private shared:SharedService,private fb:FormBuilder,private router:Router,private nav:NavbarService) { }
 
   ngOnInit(): void {
-  
+    this.nav.show();
     }
    
 

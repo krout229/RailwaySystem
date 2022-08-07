@@ -5,4 +5,5 @@ export class passenger{
     age:number=0;
     gender:string="";
     class:string="";
+
 }
