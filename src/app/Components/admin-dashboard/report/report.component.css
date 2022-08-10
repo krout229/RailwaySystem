@@ -1,3 +1,10 @@
 button{
     margin-top: 1rem;
+    
+}
+#download{
+    margin-left: 1rem;
+}
+option{
+    border: solid 1px;
 }

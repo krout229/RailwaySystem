@@ -86,7 +86,7 @@ import { ReportComponent } from './Components/admin-dashboard/report/report.comp
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path:'signup', component:SignupComponent},
       {path:'login', component:LoginComponent},
-      
+      {path:'about-us',component:AboutUsComponent},
       {path:'login/admin/dashboard', component:AdminDashboardComponent, canActivate:[AuthGuard]},
       {path:'login/user/dashboard', component:UserDashboardComponent, canActivate:[AuthGuard]},
       {path:'login/admin/dashboard/report',component:ReportComponent}

@@ -8,6 +8,9 @@
     <div class="collapse navbar-collapse justify-content-end navbar-right" id="navbarSupportedContent">
       <ul class="navbar-nav text-dark text-centre ">
         <li class="nav-item active">
+          <a class="nav-link" *ngIf="userDetails"><mat-icon>account_circle</mat-icon>Hello,{{userDetails.Name}}</a>
+        </li>
+        <li class="nav-item active">
           <a class="nav-link" (click)="onLogout()"><mat-icon>exit_to_app</mat-icon>Logout </a>
         </li>
         

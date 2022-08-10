@@ -5,12 +5,25 @@
           <label >Enter Train Id to get Report </label>
             <input class="form-control" id="TrainId"  placeholder="TrainId" formControlName="TrainId">
         </div>
-        
+        <div  class="form-group">
+            <label>Enter Status to get the repport</label><br/>
+            <mat-form-field class="MatFormFieldControl" appearance="fill">
+                    
+                <select matNativeControl required  formControlName="Status" >
+                    <option  label="--select something --"></option>
+                    <option  value="All">ALL</option>
+                  <option value="CONFIRM" >Confirm</option>
+                  <option value="Pending">Pending</option>
+                  <option value="CANCELLED" >Cancelled</option>                     
+                  
+                </select>
+              </mat-form-field>
+        </div>
         <button class="btn btn-primary" (click)="SearchPassenger()" >Search</button>
       </form>
 </div>
 
-<table class="table mt-4">
+<table class="table mt-4" id="report" #report>
     <thead>
         <tr>
             <th>PassengerId</th>
@@ -44,4 +57,5 @@
     </tbody>
     
     
-</table> 
+</table>
+<button id="download" *ngIf="reportData" class="btn btn-primary" (click)="downloadReport()">Download Pdf</button> 

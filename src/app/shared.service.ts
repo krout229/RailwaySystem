@@ -89,7 +89,9 @@ export class SharedService {
   report(tid:number){
     return this.http.get<any>(this.APIUrl+'/Passenger/GetReport?TrainId='+tid);
   }
-
+  reportStat(tid:number,val:any){
+    return this.http.get<any>(this.APIUrl+'/Passenger/GetReportStat?TrainId='+tid+'&Status='+val);
+  }
   //fare
   fareCal(tid:number,val:any,pid:number,uid:number){
     return this.http.get<any>(this.APIUrl+'/Booking/CalculateFare?TrainId='+tid+'&Class='+val+'&PassengerId='+pid+'&UserId='+uid);
