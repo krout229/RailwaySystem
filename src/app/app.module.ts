@@ -37,7 +37,10 @@ import { UserNavComponent } from './Components/user-dashboard/user-nav/user-nav.
 import { TicketComponent } from './Components/user-dashboard/ticket/ticket.component';
 import { BookingHistoryComponent } from './Components/user-dashboard/booking-history/booking-history.component';
 import { ReportComponent } from './Components/admin-dashboard/report/report.component';
+import { GetTicketComponent } from './Components/user-dashboard/get-ticket/get-ticket.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
+import { PtransactionComponent } from './Components/user-dashboard/ptransaction/ptransaction.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,8 @@ import { ReportComponent } from './Components/admin-dashboard/report/report.comp
     TicketComponent,
     BookingHistoryComponent,
     ReportComponent,
+    GetTicketComponent,
+    PtransactionComponent,
    
    
    
@@ -89,7 +94,9 @@ import { ReportComponent } from './Components/admin-dashboard/report/report.comp
       {path:'about-us',component:AboutUsComponent},
       {path:'login/admin/dashboard', component:AdminDashboardComponent, canActivate:[AuthGuard]},
       {path:'login/user/dashboard', component:UserDashboardComponent, canActivate:[AuthGuard]},
-      {path:'login/admin/dashboard/report',component:ReportComponent}
+      {path:'login/admin/dashboard/report',component:ReportComponent},
+      {path:'login/user/dashboard/get-ticket',component:GetTicketComponent},
+      {path:'login/user/dashboard/ptransaction',component:PtransactionComponent}
      ]),
      
      HttpClientModule,
@@ -103,7 +110,8 @@ import { ReportComponent } from './Components/admin-dashboard/report/report.comp
     MatOptionModule,
     BrowserModule,
     NgbModule,
-    MatInputModule
+    MatInputModule,
+    NgxPaginationModule
   ],
   providers: [SharedServicesService ],
   bootstrap: [AppComponent],

@@ -5,13 +5,15 @@ import { SharedService } from 'src/app/shared.service';
 import { NavbarService } from 'src/app/SharedService/navbar.service';
 
 @Component({
-  selector: 'app-transaction',
-  templateUrl: './transaction.component.html',
-  styleUrls: ['./transaction.component.css']
+  selector: 'app-ptransaction',
+  templateUrl: './ptransaction.component.html',
+  styleUrls: ['./ptransaction.component.css']
 })
-export class TransactionComponent implements OnInit {
+export class PtransactionComponent implements OnInit {
+
   formValue!:FormGroup;
   fare: any;
+  farebtn:any;
   pId:any;
   TransactionForm = new FormGroup({
     number : new FormControl('', [Validators.required, Validators.maxLength(16),Validators.minLength(16)]),
@@ -31,34 +33,21 @@ export class TransactionComponent implements OnInit {
 
   ngOnInit(): void {
   this.nav.hide();
-  this.loadData();
+  
+  if (!localStorage.getItem('payment')) { 
+    location.reload() 
+  } else {
+    this.loadData();
+  }
 
 }
 loadData(){
-  var shareData:any=localStorage.getItem('fare');
+  var shareData:any=localStorage.getItem('payment');
     this.fare=JSON.parse(shareData);
-    
+    this.farebtn=this.fare.fare;
 }
 PayNow(){
-
-  var shareData:any=localStorage.getItem('fare');
-  var pData:any=localStorage.getItem('passengers');
-  this.pId=JSON.parse(pData);
-  this.passengerId=this.pId.PassengerId;
-  console.log(this.passengerId);
- // this.fare=JSON.parse(shareData);
-  this.shared.GetBookingPId(this.passengerId).subscribe((res)=>{
-    this.shared.confirmBooking(res).subscribe((result)=>{
-      console.log(result);
-      alert("Booking Confirmed");
-    });
-    console.log(res);
-    localStorage.setItem('BookingId',JSON.stringify(res));
-    alert("Payment Successful");
-   
-});
-
-  this.router.navigateByUrl('login/user/dashboard/ticket');
+  this.router.navigateByUrl('login/user/dashboard/booking-history');
+  localStorage.removeItem('payment')
 }
-
 }

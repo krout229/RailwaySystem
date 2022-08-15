@@ -19,6 +19,9 @@ body,
   
   
 }
+.form-control{
+  border:none;
+}
 .section-login .container {
   padding-left: 15px;
   padding-right: 15px;
@@ -46,7 +49,7 @@ span {
 }
 
 .section-login .form-container .form {
-  background-color: rgb(207, 215, 223);
+  background-color: #c2dbe5;
   width: 55%;
   padding: 2rem 1.5rem;
   position: absolute;
@@ -54,10 +57,9 @@ span {
   right:9.5rem;
   transform: translateY(-50%);
   min-height: 400px;
-  height: 80vh;
+  height: 90vh;
   max-height: 700px;
   opacity:0.8;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,7 +67,7 @@ span {
 }
 
 .section-login .form-container .form .form-control {
-  margin-bottom: 0px;
+  margin-bottom: 10px;
 }
 
 .section-login .form-container .form .input {
@@ -76,6 +78,7 @@ span {
   border: 1px solid #999;
   outline: none;
   transition: box-shadow 0.2s linear;
+  
 }
 .section-login .form-container .form .input:focus {
   box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.1);
@@ -123,9 +126,7 @@ span {
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 } */
-.form-control{
-  border: none;
-}
+
 @media screen and (max-width: 600px) {
   .section-login {
     padding: 100px 0;

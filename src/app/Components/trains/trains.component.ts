@@ -18,6 +18,7 @@ trainModelObj:Train=new Train()
 trainData!:any;
 seats !: Seats[];
 seatData!:any;
+traindata:any;
   constructor(private fb:FormBuilder,private shared:SharedService,private nav:NavbarService,private fs:FooterService,private router:Router) { }
 
   ngOnInit(): void {
@@ -30,7 +31,8 @@ seatData!:any;
       ArrivalStation:[''],
       DepartureStation:[''],
       Date: ['']
-    })
+    });
+    this.getAllTrain();
   }
 SearchTrain(){
 // // this.trainModelObj.arrivalStation=this.formValue.value.ArrivalStation;
@@ -60,6 +62,11 @@ this.shared.getTrainbyId(id).subscribe((res)=>{
   localStorage.setItem('trainId',JSON.stringify(res));
   this.router.navigateByUrl('/login/user/dashboard/add-passenger');
 })
+}
+getAllTrain(){
+  this.shared.getAllTrains().subscribe(res=>{
+    this.traindata = res;
+  })
 }
 
 }

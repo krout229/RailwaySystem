@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { booking } from 'src/app/Models/booking.model';
+import { ticket } from 'src/app/Models/ticket.model';
 import { SharedService } from 'src/app/shared.service';
 import { NavbarService } from 'src/app/SharedService/navbar.service';
 
@@ -12,30 +14,88 @@ export class BookingHistoryComponent implements OnInit {
   userID: any;
   bModel:booking = new booking();
   booking!:any;
-  constructor(private shared:SharedService,private nav:NavbarService) { }
-
+  tModel:ticket=new ticket();
+  ticketData: any;
+  showConfirm:boolean;
+  
+  constructor(private shared:SharedService,private nav:NavbarService,private router:Router) { }
+  totalLength:any;
+  page:number=1;
   ngOnInit(): void {
     this.nav.hide();
     this.getBookingHistory();
+    
   }
-
+  
   getBookingHistory(){
     let user:any=localStorage.getItem("userId");
     this.userID=JSON.parse(user);
     
     this.shared.bookingHistory(this.userID).subscribe(res=>{
       this.booking=res;
+      this.totalLength=res.length;
       console.log(res);
     });
   }
-  deleteBooking(id:number){
-    if(confirm('Are you sure?')){
-      console.log(id);
-      this.shared.DelbookingHistory(id).subscribe(data=>{
-        console.log(data);
-        
-      });
-      location.reload();
+  ShowConfirm(){
+    if(this.booking.Status=="CONFIRM"){
+      this.showConfirm=true;
     }
+  }
+ 
+  GetTickect(pid:number,bid:number,tid:number){
+    this.shared.getTicket(pid,bid,tid).subscribe((res)=>{
+      console.log(res);
+      console.log(res[0].Status);
+      this.ticketData=res;
+    
+      if(res[0].Status==='Pending' || res[0].Status==='CANCELLED'){
+        alert("No ticket available");
+      }
+      else{
+        this.router.navigateByUrl('/login/user/dashboard/get-ticket');
+        
+      }
+    localStorage.setItem('ticket',JSON.stringify(res));
+   
+  });
+  
+  }
+
+payment(pid:any){
+ this.shared.GetBookingPId(pid).subscribe((result)=>{
+  this.shared.getBookingbyId(result).subscribe((a)=>{
+    console.log(a);
+ 
+   
+    if(a.Status==='CONFIRM' || a.Status==='CANCELLED'){
+      alert("Payment not allowed");
+    }
+    else{
+      this.shared.confirmBooking(a.BookingId).subscribe((res)=>{localStorage.setItem('payment',JSON.stringify(res));});
+      this.router.navigateByUrl('/login/user/dashboard/ptransaction'); 
+      }
+      
+    })
+    });
+  }
+  
+
+deleteBooking(pid:number){
+  this.shared.GetBookingPId(pid).subscribe((result)=>{
+    this.shared.getBookingbyId(result).subscribe((a)=>{
+      console.log(a);
+        if(a.Status==='CANCELLED'){
+          alert("Already Cancelled");
+        }
+        else{
+          alert("Are you sure?");
+          this.shared.DelbookingHistory(a.BookingId,a.TrainId).subscribe(data=>{ location.reload(); });
+        }
+      });
+    });
+ 
+      
+    
   }
 }

@@ -1,16 +1,35 @@
-
-<div class="write">
-  <img class="banner-img"src="assets\Images\railwayHome.jpg" >
-  <section class="vh-100" >
-    <div class="h-custom">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          
-        </div>
-    </div>
-   
-    
-</section>
+<div class="carousel">
+  <ngb-carousel>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper" id="image1">
+        <img src="assets\Images\TRAIN1.jpg" width="1400px;" alt="Random first slide">
+      </div>
+      <div class="carousel-caption typewriter">
+        <h3 id="tag1">Welcome.</h3>
+        <p></p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img src="assets\Images\TRAIN2.jpg" alt="Random second slide">
+      </div>
+      <div class="carousel-caption">
+        <h3  id="tag2">Search Trains anywhere,anytime.</h3>
+        <p>Book train tickets online on our booking system.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img src="assets\Images\TRAIN3.jpg" alt="Random third slide">
+      </div>
+      <div class="carousel-caption">
+        <h3 id="tag3">Travel and Enjoy</h3>
+        <p id="tag3"><b>Plan your journey with us.</b></p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
 </div>
+
 <div class="container">
   <div class="row mb-3" style="margin-top:50px;">
     <div class="col">

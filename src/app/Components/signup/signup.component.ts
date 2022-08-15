@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators,NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
 import { SharedService } from 'src/app/shared.service';
-import { NavbarService } from 'src/app/SharedService/navbar.service';
+
+
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +15,7 @@ export class SignupComponent implements OnInit {
   SignUpform = new FormGroup({
     name : new FormControl('', Validators.required),
     email : new FormControl('',[Validators.required , Validators.email]),
-    mobile : new FormControl('' , [Validators.required , Validators.minLength(10) , Validators.maxLength(10),Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (](\\d{3})[-. )](\\d{3})[-. ](\\d{4})(?: *x(\\d+))?\\s$')]),
+    mobile : new FormControl('' , [Validators.required ,Validators.minLength(10),Validators.pattern("^[0-9]*$"),Validators.maxLength(10)]),
     address : new FormControl('',Validators.required),
     password : new FormControl('',Validators.required)
   });
@@ -35,21 +36,18 @@ export class SignupComponent implements OnInit {
     return this.SignUpform.get('password');
   }
 
-  constructor(private shared:SharedService, private router:Router,private nav:NavbarService) { }
+  constructor(private shared:SharedService, private router:Router) { }
 
   ngOnInit(): void {
-    this.nav.show();
   }
   onSubmit() {
     this.submitted = true;
     if (this.SignUpform.invalid) {
       return;
   }
-
- this.shared.SaveUser(this.SignUpform.value).subscribe((res)=>{
- 
-   console.log(res);
-   if(res==1){
+  this.shared.SaveUser(this.SignUpform.value).subscribe((result)=>{
+  console.log(result);
+  if(result==1){
     alert("Email already registered");
   }
   else{

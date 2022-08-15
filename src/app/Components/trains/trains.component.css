@@ -9,4 +9,14 @@ button{
 input{
     width:50rem;
 }
+
 .tbody:hover {background-color:rgb(210, 228, 222);}
+
+.table{
+    width: 90%;
+    margin-left: 5rem;
+}
+.container{
+   
+    margin-left: 100px;
+}

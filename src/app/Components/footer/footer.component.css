@@ -8,10 +8,11 @@
     color: #d3d3d3;
     height: 300px;
     position: relative;
+    margin-top: -10px;
 }
 
 .footer .footer-content {
-    border: 1px solid;
+    font-family: 'Libre Baskerville', serif;
     height: 300px;
     display: flex;
 }

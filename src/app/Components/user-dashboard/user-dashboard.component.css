@@ -3,7 +3,7 @@
     width:50px;
 }
 .container{
-    margin-top: 6rem;
+    
     padding-bottom: 20%;
 }
 .card1{
@@ -12,7 +12,8 @@
 }
 img{
     width:18rem;
-    height:18rem;
+    height:16rem;
+    z-index: -1;
 }
 .img-banner{
     width:30rem;
@@ -27,4 +28,14 @@ img{
 }
 .card{
     border:none;
+    margin-top: 10rem;
+    margin-left: 5rem;
+    background: transparent;
+    border-radius: 50%;
+   
+}
+.jumbotron{
+    /* background-image: url('src\assets\Images\Blue.jpg'); */
+    background-color: rgb(186, 218, 247);
+   
 }

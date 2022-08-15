@@ -18,8 +18,13 @@ export class TicketComponent implements OnInit {
 
   ngOnInit(): void {
     this.nav.hide();
-    this.loadData();
+    // this.loadData();
     this.getBookingById();
+    if (!localStorage.getItem('BookingId')) { 
+      location.reload() 
+    } else {
+      this.loadData();
+    }
   }
 loadData(){
   var shareData:any=localStorage.getItem('trainId');
@@ -33,11 +38,12 @@ getBookingById(){
   var shareVal:any=localStorage.getItem('BookingId');
   this.bData=JSON.parse(shareVal);
   
-  this.shared. getBookingbyId(this.bData).subscribe((res)=>{
+  this.shared.getBookingbyId(this.bData).subscribe((res)=>{
     this.bookingData=res;
     console.log(res);});
 }
-Remove(){
+Download(){
+  this.shared.addTicket(this.pData.PassengerId,this.bData,this.trainData.TrainId).subscribe((res)=>{});
  let pdf = new jsPDF('l','pt','a4');
  pdf.text("Ticket",19,19)
  pdf.html(this.el.nativeElement,{

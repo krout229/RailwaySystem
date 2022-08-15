@@ -19,21 +19,33 @@ report:Report = new Report();
 reportData:any;
 showPass !: boolean;
 showStat !: boolean;
+traindata:any;
+split:any;
   constructor(private fb:FormBuilder,private shared:SharedService,private nav:NavbarService,private fs:FooterService,private router:Router) { }
+ 
+  totalLength:any;
+  page:number=1;
 
   ngOnInit(): void {
     this.nav.hide();
     this.nav.doSomethingElseUseful();
-    this.fs.show();
-    this.fs.doSomethingElseUseful();
+    
     this.formValue=this.fb.group({
       TrainId:[''],
       Status:[''],
-    })
+    });
+    this.getAllTrain();
+    
   }
+   
   SearchPassenger(){
-    this.shared.reportStat(this.formValue.value.TrainId,this.formValue.value.Status).subscribe((res)=>{
+    this.split= this.formValue.value.TrainId.split(" ");
+    var trainId=this.split[0];
+    console.log(trainId);
+    console.log(this.formValue.value.TrainId);
+    this.shared.reportStat(trainId,this.formValue.value.Status).subscribe((res)=>{
       console.log(res);
+      this.totalLength=res.length;
       this.reportData=res;
       if(res==null || Object.keys(res).length===0){
         alert("No Report Found");
@@ -45,12 +57,17 @@ showStat !: boolean;
   }
 
   downloadReport(){
-    let pdf = new jsPDF('l','pt','a4');
+    let pdf = new jsPDF('l','pt','a3');
 
     pdf.html(this.el.nativeElement,{
     callback:(pdf)=>{
     pdf.save("report.pdf");
       }
     });
+  }
+  getAllTrain(){
+    this.shared.getAllTrains().subscribe(res=>{
+      this.traindata = res;
+    })
   }
 }

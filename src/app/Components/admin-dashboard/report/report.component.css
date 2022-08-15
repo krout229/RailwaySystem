@@ -1,10 +1,14 @@
 button{
     margin-top: 1rem;
-    
-}
-#download{
     margin-left: 1rem;
 }
-option{
-    border: solid 1px;
+#report{
+    width: 200mm;
+    margin-left: 1rem;
+    background-color: rgb(159, 187, 196);
+    padding-left: 1%;
+    margin-top: 2rem;
+}
+.jumbotron{
+background-color:aliceblue;
 }

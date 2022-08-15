@@ -101,18 +101,26 @@ export class SharedService {
   bookingHistory(uid:number){
       return this.http.get<any>(this.APIUrl+'/Booking/GetBookingHistory?UserId='+uid);
   }
-  DelbookingHistory(bid:number){
-    return this.http.delete<any>(this.APIUrl+'/Booking/DeleteBooking?BookingId='+bid);
+  DelbookingHistory(bid:number,tid:number){
+    return this.http.delete<any>(this.APIUrl+'/Booking/DeleteBooking?BookingId='+bid+'&TrainId='+tid);
   }
   getBookingbyId(bid:number){
     return this.http.get<any>(this.APIUrl+'/Booking/GetBooking?BookingId='+bid);
   }
   //Transaction
-  GetBookingId(pid:number){
+  GetBookingPId(pid:number){
     return this.http.get<any>(this.APIUrl+'/Booking/GetBookingId?PassengerId='+pid);
   }
   confirmBooking(bid:any){
     return this.http.get<any>(this.APIUrl+'/Booking/ConfirmBooking?BookingId='+bid);
+  }
+
+  //ticket
+  addTicket(pid:number,bid:number,tid:number){
+    return this.http.get<any>(this.APIUrl+'/Ticket/SaveTicket?PassengerId='+pid+'&BookingId='+bid+'&TrainId='+tid);
+  }
+  getTicket(pid:number,bid:number,tid:number){
+    return this.http.get<any>(this.APIUrl+'/Ticket/GetTicketModel?PassengerId='+pid+'&BookingId='+bid+'&TrainId='+tid);
   }
 }
 

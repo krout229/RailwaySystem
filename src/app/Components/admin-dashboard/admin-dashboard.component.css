@@ -3,7 +3,6 @@
     width:50px;
 }
 .container{
-    margin-top: 6rem;
     padding-bottom: 20%;
 }
 .card1{
@@ -12,14 +11,14 @@
 }
 img{
     width:18rem;
-    height:18rem;
+    height:16rem;
 }
 .img-banner{
     width:30rem;
 }
 .card:hover{
     transform: scale(1.05);
- box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+ box-shadow: 0px 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 .card1:hover{
     transform: scale(1.05);
@@ -27,4 +26,12 @@ img{
 }
 .card{
     border:none;
+    margin-top: 6rem;
+    background: transparent;
+    border-radius: 50%;
+}
+.jumbotron{
+    /* background-image: url('src\assets\Images\Blue.jpg'); */
+    background-color: rgb(186, 218, 247);
+   
 }
