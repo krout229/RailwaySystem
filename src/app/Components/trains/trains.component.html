@@ -58,7 +58,7 @@
             <td>{{row.SecondAC}}</td>
             <td>{{row.Sleeper}}</td>
             <td>
-                <button class="btn btn-primary" (click)="GetTrainById(row.TrainId)">Book Now</button>
+                <button class="btn btn-primary" (click)="GetTrainById(row.TrainId,row.FirstAC,row.SecondAC,row.Sleeper)">Book Now</button>
             </td>
         </tr>
        

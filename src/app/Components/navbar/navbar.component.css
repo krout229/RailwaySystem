@@ -7,3 +7,8 @@ margin-left: 0rem;
 text-decoration: solid;
 font-family: 'Libre Baskerville', serif;
 }
+.nav-link{
+    margin-right: 2rem;
+    
+    font-family: 'Libre Baskerville', serif;
+}

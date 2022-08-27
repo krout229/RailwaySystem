@@ -19,6 +19,7 @@ trainData!:any;
 seats !: Seats[];
 seatData!:any;
 traindata:any;
+
   constructor(private fb:FormBuilder,private shared:SharedService,private nav:NavbarService,private fs:FooterService,private router:Router) { }
 
   ngOnInit(): void {
@@ -44,6 +45,8 @@ this.shared.SearchTrain(this.formValue.value.ArrivalStation,this.formValue.value
   console.log(res);
     this.trainData = res;
     this.seatData=res;
+   
+   
     if(res==null || Object.keys(res).length===0){
       alert("No Train Found");
     }
@@ -55,13 +58,19 @@ this.shared.SearchTrain(this.formValue.value.ArrivalStation,this.formValue.value
 });
 }
 
-GetTrainById(id:number){
+GetTrainById(id:number,firstac:number,secondac:number,sleeper:number){
 this.trainModelObj.trainId=id;
-this.shared.getTrainbyId(id).subscribe((res)=>{
-  console.log(res);
-  localStorage.setItem('trainId',JSON.stringify(res));
-  this.router.navigateByUrl('/login/user/dashboard/add-passenger');
-})
+
+  if(firstac == 0 && secondac==0 && sleeper==0){
+    alert("NO SEATS AVAILABLE")
+  }
+  else{
+    this.shared.getTrainbyId(id).subscribe((res)=>{
+      console.log(res);
+    localStorage.setItem('trainId',JSON.stringify(res));
+    this.router.navigateByUrl('/login/user/dashboard/add-passenger');
+  });
+}
 }
 getAllTrain(){
   this.shared.getAllTrains().subscribe(res=>{

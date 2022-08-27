@@ -41,6 +41,7 @@ import { GetTicketComponent } from './Components/user-dashboard/get-ticket/get-t
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { PtransactionComponent } from './Components/user-dashboard/ptransaction/ptransaction.component';
+import { ErrorComponent } from './Components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { PtransactionComponent } from './Components/user-dashboard/ptransaction/
     ReportComponent,
     GetTicketComponent,
     PtransactionComponent,
+    ErrorComponent,
    
    
    
@@ -96,7 +98,8 @@ import { PtransactionComponent } from './Components/user-dashboard/ptransaction/
       {path:'login/user/dashboard', component:UserDashboardComponent, canActivate:[AuthGuard]},
       {path:'login/admin/dashboard/report',component:ReportComponent},
       {path:'login/user/dashboard/get-ticket',component:GetTicketComponent},
-      {path:'login/user/dashboard/ptransaction',component:PtransactionComponent}
+      {path:'login/user/dashboard/ptransaction',component:PtransactionComponent},
+      {path: '**', component:ErrorComponent,pathMatch:'full'},
      ]),
      
      HttpClientModule,
